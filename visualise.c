@@ -73,7 +73,7 @@ void ConvertDec(long long value, int type, char *binary){
 
     int i=length-1; // Put values in string from right to left
     while(value){
-        binary[i] = value%2+'0';
+        binary[i] = value%2 + '0';
         i--;
         value = value >> 1;
     }
