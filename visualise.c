@@ -297,7 +297,6 @@ bool QueueEmpty(Queue *q){
     if(q->front == NULL) return 1;
     return 0;
 }
-
 // -------------------------------------------------------------------------------------------
 //  User interface
 void error(){
