@@ -1,4 +1,4 @@
-//Implementation of the visualise task
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
