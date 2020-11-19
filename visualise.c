@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <limits.h>
-
+//edit
 enum {eCHAR,eUCHAR,eINT,eUINT,eLONG};
 // Sizes of types are saved in nibbles, for later usage
 // Position in arrays correspond to the enums above e.g. sizes[eCHAR] is 2
