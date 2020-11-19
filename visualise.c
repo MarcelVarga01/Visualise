@@ -26,13 +26,14 @@ struct thequeue {
     Elem *back;
 };
 typedef struct thequeue Queue;
-    
+
+// Definitions for these functions start at line 270
 void InitialiseQueue(Queue *s);
 void Push(Queue *q, int type, int index);
 int Pop(Queue *q, int *type, int *index);    
 bool QueueEmpty(Queue *q);
-void printbinary(char *s);
-void error();
+void printbinary(char *s); // Prints binary value grouped in nibbles
+void error(); // Terminates program prematurely and prints error message
 
 // Converts string to a decimal integer
 // "valid" becomes equal to 0 if we encounter an input error
@@ -229,6 +230,18 @@ void FormatInput(int n, char *s[n], bool binary, Queue *q){
         free(c);
         }      
     }
+// Goes through all elements of the queue and checks if they are in between limits, catching input errors using ConvertDecStr
+// Called for decimal inputs
+void CheckLimits(int n, char *s[n], Queue *q){
+    Elem *p = q->front;
+    bool valid = 1;
+    char ANS[100];
+    while(p != NULL){
+        int index = p->index, type = p->type;
+        ConvertDec(ConvertDecStr(s[index],&valid,type,0),type,ANS);
+        p = p->next;
+    }
+}    
 
 // Empties the queue and calls the right functions for the input
 void Solve(int n, char *s[n], bool binary, Queue *q){
@@ -237,6 +250,7 @@ void Solve(int n, char *s[n], bool binary, Queue *q){
 
         Pop(q,&index,&type);
         if(!binary){
+            CheckLimits(n, s, q); // Checks if each value of the queue is between its type limits
             bool valid = 1;
             char ANS[100];
             ConvertDec(ConvertDecStr(s[index],&valid,type,0),type,ANS);
@@ -299,6 +313,8 @@ bool QueueEmpty(Queue *q){
 }
 // -------------------------------------------------------------------------------------------
 //  User interface
+
+// Terminates program prematurely and prints error message
 void error(){
     printf("Input error.\n");
     exit(1);
